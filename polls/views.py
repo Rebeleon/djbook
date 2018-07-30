@@ -52,8 +52,8 @@ def vote(request, question_id):
             # with POST data. This prevents data from being posted twice if a
             # user hits the Back button.
             response = HttpResponseRedirect(reverse('results', args=(question.id,)))
-            response.set_cookie("vote"+str(question_id), 1, expires=datetime.datetime.utcnow() +
-                                                                    datetime.timedelta(days=1))
+            response.set_cookie("vote"+str(question_id), 1,
+                                expires=datetime.datetime.utcnow() + datetime.timedelta(days=1))
             return response
         except Choice.DoesNotExist:
             pass
