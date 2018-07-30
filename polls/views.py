@@ -14,7 +14,8 @@ class IndexView(generic.ListView):
 
     def get(self, request, *args, **kwargs):
         response = super().get(request, *args, **kwargs)
-        response.set_cookie("new_cookie2", "123456", expires = datetime.datetime.utcnow() + datetime.timedelta(days=1))
+        response.set_cookie("new_cookie2", "123456",
+                            expires=datetime.datetime.utcnow() + datetime.timedelta(days=1))
         return response
 
     def get_queryset(self):
@@ -26,9 +27,7 @@ class IndexView(generic.ListView):
             pub_date__lte=timezone.now()
         ).order_by('-pub_date')[:5]
 
-
-   # response.set_cookie('last_connection', datetime.datetime.now())
-
+    # response.set_cookie('last_connection', datetime.datetime.now())
 
 
 class DetailView(generic.DetailView):
@@ -53,7 +52,8 @@ def vote(request, question_id):
             # with POST data. This prevents data from being posted twice if a
             # user hits the Back button.
             response = HttpResponseRedirect(reverse('results', args=(question.id,)))
-            response.set_cookie("vote"+str(question_id), 1, expires=datetime.datetime.utcnow() + datetime.timedelta(days=1))
+            response.set_cookie("vote"+str(question_id), 1, expires=datetime.datetime.utcnow() +
+                                                                    datetime.timedelta(days=1))
             return response
         except Choice.DoesNotExist:
             pass
@@ -63,4 +63,3 @@ def vote(request, question_id):
         'question': question,
         'error_message': "You didn't select a choice.",
     })
-

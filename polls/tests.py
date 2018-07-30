@@ -76,7 +76,7 @@ class QuestionViewTests(TestCase):
             ['<Question: Past question 2.>', '<Question: Past question 1.>']
         )
 
-        
+
 class QuestionMethodTests(TestCase):
 
     def test_was_published_recently_with_future_question(self):
