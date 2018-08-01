@@ -8,6 +8,9 @@ class ChoiceInline(admin.TabularInline):
     extra = 3
 
 
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('name', 'article')
+
 class QuestionAdmin(admin.ModelAdmin):
     fieldsets = [
         (None,               {'fields': ['question_text']}),
@@ -22,4 +25,4 @@ class QuestionAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Question, QuestionAdmin)
-admin.site.register(Contact)
+admin.site.register(Contact, ContactAdmin)

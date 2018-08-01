@@ -79,11 +79,6 @@ class ClassView(generic.TemplateView):
 
 
 def new_contact(request):
-    form = ContactForm()
-    return render(request, 'template.html', {'form': form})
-
-
-def new_contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
