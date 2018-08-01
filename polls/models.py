@@ -29,3 +29,11 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=200)
+    article = models.TextField()
+
+    def __str__(self):
+        return self.name

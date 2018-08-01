@@ -6,17 +6,12 @@ from django.utils import timezone
 import datetime
 
 from .models import Choice, Question
+from .forms import ContactForm
 
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
-
-    def get(self, request, *args, **kwargs):
-        response = super().get(request, *args, **kwargs)
-        response.set_cookie("new_cookie2", "123456",
-                            expires=datetime.datetime.utcnow() + datetime.timedelta(days=1))
-        return response
 
     def get_queryset(self):
         """
@@ -63,3 +58,37 @@ def vote(request, question_id):
         'question': question,
         'error_message': "You didn't select a choice.",
     })
+
+
+def function(request):
+    data = {
+        'type': 'function based',
+    }
+    return render(request, "template.html", data)
+
+
+class ClassView(generic.TemplateView):
+    template_name = 'template.html'
+
+    def get_context_data(self, **kwargs):
+        data = {
+            'type': 'class based',
+            'form': ContactForm(),
+        }
+        return data
+
+
+def new_contact(request):
+    form = ContactForm()
+    return render(request, 'template.html', {'form': form})
+
+
+def new_contact(request):
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'template.html')
+    else:
+        form = ContactForm()
+    return render(request, 'template.html', {'form': form})
