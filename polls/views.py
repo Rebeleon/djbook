@@ -22,8 +22,6 @@ class IndexView(generic.ListView):
             pub_date__lte=timezone.now()
         ).order_by('-pub_date')[:5]
 
-    # response.set_cookie('last_connection', datetime.datetime.now())
-
 
 class DetailView(generic.DetailView):
     model = Question
@@ -58,24 +56,6 @@ def vote(request, question_id):
         'question': question,
         'error_message': "You didn't select a choice.",
     })
-
-
-def function(request):
-    data = {
-        'type': 'function based',
-    }
-    return render(request, "template.html", data)
-
-
-class ClassView(generic.TemplateView):
-    template_name = 'template.html'
-
-    def get_context_data(self, **kwargs):
-        data = {
-            'type': 'class based',
-            'form': ContactForm(),
-        }
-        return data
 
 
 def new_contact(request):
