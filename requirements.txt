@@ -1,5 +1,5 @@
 Django==2.0.7
 pytz==2018.5
-pep8==1.7.1
+pycodestyle==2.4.0
 psycopg2-binary==2.7.5
 wheel==0.31.1
