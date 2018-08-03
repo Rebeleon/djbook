@@ -1,17 +1,12 @@
-{% load bootstrap4 %}
+{% extends "index.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% block title %}Add contacts{% endblock %}
 
+{% block header %}Add a contact{% endblock %}
+
+{% block content %}
     <form method="post">{% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
+        {{ form }}
+        <input type="submit" value="Submit"/>
     </form>
-
-</body>
-</html>
+{% endblock %}
