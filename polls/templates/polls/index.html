@@ -2,7 +2,13 @@
 
 {% block title %}Question list{% endblock %}
 
-{% block header %}Questions list{% endblock %}
+{% block header %}
+    {% if request.user.is_authenticated %}
+        {{ request.user.username }}
+    {% else %}
+        <p>AnonymousUser<p>
+    {% endif %}
+{% endblock %}
 
 {% block content %}
     {% if latest_question_list %}

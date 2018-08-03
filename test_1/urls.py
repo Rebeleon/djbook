@@ -20,6 +20,7 @@ from polls.views import IndexView
 
 urlpatterns = [
     url(r'^polls/', include('polls.urls')),
+    url(r'^accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index')
 ]
